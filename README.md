@@ -1,8 +1,11 @@
 # Wabbadrift
 
-Wabbadrift shows how your Mod Organizer 2 (MO2) instance has drifted from the Wabbajack modlist it
-started as. It compares your instance with a clean install of the same list, file by file, and
-lets you add mods you're missing or reset mods you've changed. Every change can be undone.
+Using a Wabbajack modlist as your baseline? Wabbadrift shows what drifted (mods, plugins, configs)
+and recovers the FOMOD installer choices each mod was installed with, so you can see which options
+the list picked and where yours differ. Update or restore mods with backup and undo.
+
+It compares your Mod Organizer 2 (MO2) instance with a clean install of the same list, file by
+file.
 
 It works with any MO2-managed game and any Wabbajack modlist.
 
