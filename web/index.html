@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Scripts only from this site; everything read from the instances is shown as text. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Wabbadrift</title>
+  <meta name="description" content="How a customised Mod Organizer 2 instance drifted from its Wabbajack list.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230e1115' stroke='%23d2ad66' stroke-width='2'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23d2ad66'%3E%E1%9A%B9%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="web/app.css">
+  <script src="web/theme.js"></script>
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-rune" aria-hidden="true">ᚹ</div>
+        <h1>WABBADRIFT</h1>
+      </div>
+      <span class="spacer"></span>
+      <div class="pair-controls">
+        <label class="sr-only" for="pairSelect">Comparison</label>
+        <select class="select" id="pairSelect" title="Comparison"></select>
+        <button class="btn" id="infoBtn" title="What this comparison compares">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>Details
+        </button>
+        <button class="btn" id="newPairBtn" title="Set up another comparison">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New
+        </button>
+        <button class="btn" id="rescanBtn" title="Scan both instances again">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Rescan
+        </button>
+      </div>
+      <div class="top-actions">
+        <button class="btn icon ghost" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="viewbar">
+      <nav class="tabs" role="tablist" aria-label="Views">
+        <button class="tab" role="tab" data-tab="mods">Mods</button>
+        <button class="tab" role="tab" data-tab="plugins">Plugins</button>
+        <button class="tab" role="tab" data-tab="root">Game root</button>
+        <button class="tab" role="tab" data-tab="configs">Configs</button>
+        <button class="tab" role="tab" data-tab="leaks">Leaks</button>
+        <button class="tab" role="tab" data-tab="fomod">FOMOD</button>
+        <button class="tab" role="tab" data-tab="updates">Updates</button>
+        <button class="tab" role="tab" data-tab="history">History</button>
+      </nav>
+      <label class="search">
+        <span class="sr-only">Search</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="Search names and paths…" autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <button class="toggle" id="expectedBtn" data-act="expected" aria-pressed="false" title="Generator outputs, game-version files, machine-specific keys and intentional additions">Show expected drift</button>
+    </div>
+  </header>
+
+  <main id="app"><div class="loading">Loading…</div></main>
+  <footer id="footer">Only your instance is ever written, and only when you apply changes. The baseline and the .wabbajack are read-only.</footer>
+
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="Details" aria-hidden="true"></aside>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="web/app.js"></script>
+</body>
+</html>

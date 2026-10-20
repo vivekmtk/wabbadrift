@@ -1,0 +1,12 @@
+# User data: pair configs, scan caches, snapshots, backups, undo logs
+data/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Secrets
+.env

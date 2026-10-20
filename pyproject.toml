@@ -1,0 +1,25 @@
+[project]
+name = "wabbadrift"
+version = "0.1.0"
+description = "Compare a customised MO2 instance with a clean install of its Wabbajack list, and add or reset mods from it."
+requires-python = ">=3.10"
+dependencies = [
+    "xxhash",
+    "PyYAML",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["wabbadrift"]
+
+[tool.setuptools.package-data]
+wabbadrift = ["defaults/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,37 @@
+# Config files of modding tools that commonly hold absolute paths.
+#
+# Each entry has a name and one or more globs. Globs start with a placeholder for the custom
+# instance (%MO2%, %MODS%, %OVERWRITE%, %PROFILE%) or an environment variable (%LOCALAPPDATA%,
+# %APPDATA%, %USERPROFILE%). Extend the list in a pair's rules file under `known_tools:`.
+- name: BodySlide
+  globs:
+    - "%MODS%/*/CalienteTools/BodySlide/Config.xml"
+    - "%OVERWRITE%/CalienteTools/BodySlide/Config.xml"
+- name: PGPatcher / ParallaxGen
+  globs:
+    - "%MODS%/*/PGPatcher/cfg/*.json"
+    - "%MODS%/*/ParallaxGen/cfg/*.json"
+    - "%MODS%/*/cfg/settings.json"
+- name: DynDOLOD / TexGen
+  globs:
+    - "%MO2%/tools/**/DynDOLOD_*.ini"
+    - "%MO2%/tools/**/TexGen_*.ini"
+- name: xLODGen
+  globs:
+    - "%MO2%/tools/**/xLODGen*.ini"
+- name: Bethini Pie
+  globs:
+    - "%MO2%/tools/**/Bethini.ini"
+    - "%MODS%/*/Bethini.ini"
+- name: Wrye Bash
+  globs:
+    - "%MO2%/tools/**/bash.ini"
+- name: Nemesis
+  globs:
+    - "%MODS%/*/Nemesis_Engine/*.ini"
+- name: Synthesis
+  globs:
+    - "%MO2%/tools/**/Synthesis/*.json"
+- name: LOOT
+  globs:
+    - "%LOCALAPPDATA%/LOOT/settings.toml"

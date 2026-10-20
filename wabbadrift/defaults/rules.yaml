@@ -1,0 +1,241 @@
+# Expected-drift defaults. `common` applies to every game; each game section adds to it.
+# A pair's rules file (data/pairs/<pair>.rules.yaml) is created from `common` + its game, and is
+# the file to edit.
+#
+# Patterns are case-insensitive globs: `*` matches anything (including `/`), `?` one character.
+# Everything else, including `[` and `]`, is literal. Paths use `/`.
+# INI keys are matched as `Section/Key`.
+
+common:
+  generator_outputs:
+    # whole mods that tools generate
+    mods:
+      - "*DynDOLOD*Output*"
+      - "*TexGen*Output*"
+      - "*LODGen*Output*"
+      - "*Nemesis*Output*"
+      - "*Pandora*Output*"
+      - "*FNIS*Output*"
+      - "*PGPatcher*Output*"
+      - "*ParallaxGen*Output*"
+      - "*Synthesis*Output*"
+      - "*BodySlide*Output*"
+      - "*Bashed Patch*"
+      - "*Smashed Patch*"
+      - "*Grass Cache*"
+      - "*Script Extender*Output*"
+      - "SKSE Output"
+      - "F4SE Output"
+    # files inside any mod
+    files:
+      - "*.log"
+      - "*.bak"
+    plugins:
+      - "Bashed Patch*.esp"
+      - "Smashed Patch*.esp"
+      - "Synthesis*.esp"
+      - "DynDOLOD.esm"
+      - "DynDOLOD.esp"
+      - "Occlusion.esp"
+    # files in the game root
+    game_root:
+      - "*.log"
+      - "Logs/*"
+    overwrite: true
+  game_version_files:
+    mods: []
+    files: []
+    # script-extender plugin DLLs; expected only when the two game versions differ
+    # (a game executable in the game root changed)
+    plugin_dlls: []
+    game_root:
+      - "installscript.vdf"
+      - "steam_api*.dll"
+      - "bink2w*.dll"
+  machine_specific_ini:
+    keys:
+      - "*/iSize W"
+      - "*/iSize H"
+      - "*/iAdapter"
+      - "*/bFull Screen"
+      - "*/bBorderless"
+      - "*/iLocation X"
+      - "*/iLocation Y"
+      - "*/*Monitor*"
+      - "*/Resolution*"
+      - "*/iScreenShotIndex"
+      - "Launcher/*"
+    # a key whose baseline and custom values are both absolute paths
+    absolute_paths: true
+  intentional_additions:
+    # mods under separators matching these are listed as intentional additions, not drift
+    separators:
+      - "[Custom]*"
+  # extra entries for the leak scan (same format as defaults/known_tools.yaml)
+  known_tools: []
+
+games:
+  skyrimse:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: ["SKSE/Plugins/version*-*.bin", "SKSE/Plugins/version*-*.csv"]
+      plugin_dlls: ["SKSE/Plugins/*.dll", "SKSE/Plugins/*.pdb"]
+      game_root:
+        - "SkyrimSE.exe"
+        - "SkyrimSELauncher.exe"
+        - "skse64_*"
+        - "src/*"
+        - "Data/Skyrim.esm"
+        - "Data/Update.esm"
+        - "Data/Dawnguard.esm"
+        - "Data/HearthFires.esm"
+        - "Data/Dragonborn.esm"
+        - "Data/_ResourcePack.*"
+        - "Data/cc*"
+        - "Skyrim.ccc"
+        - "SkyrimReservedAddOnIndexes.txt"
+        - "Creations/*"
+        # Creation Kit
+        - "CreationKit*"
+        - "Data/Source/*"
+        - "Data/DialogueViews/*"
+        - "Data/Scripts/Source/*"
+        - "Papyrus Compiler/*"
+        - "Tools/*"
+        - "lex/*"
+        - "p4com64.dll"
+        - "flowchartx*.dll"
+        - "ssce5532.dll"
+        - "EditorWarnings.txt"
+        - "DataFiles.txt"
+  skyrimvr:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: ["SKSE/Plugins/version*-*.bin", "SKSE/Plugins/version*-*.csv"]
+      plugin_dlls: ["SKSE/Plugins/*.dll", "SKSE/Plugins/*.pdb"]
+      game_root:
+        - "SkyrimVR.exe"
+        - "sksevr_*"
+        - "src/*"
+        - "Data/Skyrim.esm"
+        - "Data/Update.esm"
+        - "Data/Dawnguard.esm"
+        - "Data/HearthFires.esm"
+        - "Data/Dragonborn.esm"
+        - "Data/SkyrimVR.esm"
+  skyrim:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: []
+      plugin_dlls: ["SKSE/Plugins/*.dll", "SKSE/Plugins/*.pdb"]
+      game_root:
+        - "TESV.exe"
+        - "SkyrimLauncher.exe"
+        - "skse_*"
+        - "src/*"
+        - "Data/Skyrim.esm"
+        - "Data/Update.esm"
+        - "Data/Dawnguard.esm"
+        - "Data/HearthFires.esm"
+        - "Data/Dragonborn.esm"
+        - "CreationKit*"
+        - "Papyrus Compiler/*"
+  fallout4:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: ["F4SE/Plugins/version*-*.bin", "F4SE/Plugins/version*-*.csv"]
+      plugin_dlls: ["F4SE/Plugins/*.dll", "F4SE/Plugins/*.pdb"]
+      game_root:
+        - "Fallout4.exe"
+        - "Fallout4Launcher.exe"
+        - "f4se_*"
+        - "src/*"
+        - "Data/Fallout4.esm"
+        - "Data/DLC*.esm"
+        - "Data/DLC*.ba2"
+        - "Data/cc*"
+        - "Fallout4.ccc"
+        - "CreationKit*"
+        - "Papyrus Compiler/*"
+        - "Tools/*"
+  fallout4vr:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: ["F4SE/Plugins/version*-*.bin", "F4SE/Plugins/version*-*.csv"]
+      plugin_dlls: ["F4SE/Plugins/*.dll", "F4SE/Plugins/*.pdb"]
+      game_root:
+        - "Fallout4VR.exe"
+        - "f4sevr_*"
+        - "src/*"
+        - "Data/Fallout4.esm"
+        - "Data/Fallout4_VR.esm"
+  falloutnv:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: []
+      plugin_dlls: ["NVSE/Plugins/*.dll", "NVSE/Plugins/*.pdb"]
+      game_root:
+        - "FalloutNV.exe"
+        - "FalloutNVLauncher.exe"
+        - "nvse_*"
+        - "src/*"
+        - "Data/FalloutNV.esm"
+        - "Data/DeadMoney.esm"
+        - "Data/HonestHearts.esm"
+        - "Data/OldWorldBlues.esm"
+        - "Data/LonesomeRoad.esm"
+        - "Data/GunRunnersArsenal.esm"
+        - "Data/*Pack.esm"
+        - "GECK*"
+  fallout3:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: []
+      plugin_dlls: ["FOSE/Plugins/*.dll", "FOSE/Plugins/*.pdb"]
+      game_root:
+        - "Fallout3.exe"
+        - "FalloutLauncher.exe"
+        - "fose_*"
+        - "src/*"
+        - "Data/Fallout3.esm"
+        - "Data/Anchorage.esm"
+        - "Data/BrokenSteel.esm"
+        - "Data/PointLookout.esm"
+        - "Data/ThePitt.esm"
+        - "Data/Zeta.esm"
+        - "GECK*"
+  oblivion:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: []
+      plugin_dlls: ["OBSE/Plugins/*.dll", "OBSE/Plugins/*.pdb"]
+      game_root:
+        - "Oblivion.exe"
+        - "OblivionLauncher.exe"
+        - "obse_*"
+        - "src/*"
+        - "Data/Oblivion.esm"
+        - "Data/DLC*.esp"
+        - "Data/Knights.esp"
+        - "TESConstructionSet.exe"
+  starfield:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: ["SFSE/Plugins/version*-*.bin", "SFSE/Plugins/version*-*.csv"]
+      plugin_dlls: ["SFSE/Plugins/*.dll", "SFSE/Plugins/*.pdb"]
+      game_root:
+        - "Starfield.exe"
+        - "sfse_*"
+        - "src/*"
+        - "Data/Starfield.esm"
+        - "Data/Constellation.esm"
+        - "Data/OldMars.esm"
+        - "Data/BlueprintShips-Starfield.esm"
+        - "Data/SFBGS*"
+        - "CreationKit*"
+        - "Tools/*"
+  generic:
+    game_version_files:
+      mods: ["*Script Extender*"]
+      files: []
+      game_root: ["*.exe"]
